@@ -10,6 +10,9 @@ import { getLikedRecipesController } from "../controllers/user/getLikedRecipesCo
 import { getSavedRecipesController } from "../controllers/user/getSavedRecipes";
 import { followUserController } from "../controllers/user/followUserController";
 import { loginUserController } from "../controllers/user/loginUserController";
+import { getFollowersController } from "../controllers/user/getFollowersController";
+import { getFollowingController } from "../controllers/user/getFollowingController";
+import { getUserRecipesController } from "../controllers/user/getUserRecipesController";
 
 const router = express.Router();
 
@@ -22,5 +25,9 @@ router.get("/user/:userId/likedRecipes/", getLikedRecipesController);
 router.post("/user/:userId/savedRecipes/:recipeId", saveRecipeController);
 router.get("/user/:userId/savedRecipes", getSavedRecipesController);
 router.post("/user/:userId/follow/:followingId", followUserController);
+router.get("/user/:userId/followers", getFollowersController);
+router.get("/user/:userId/following", getFollowingController);
 router.post("/user/login", loginUserController);
+router.get("/user/:userId/recipes", getUserRecipesController);
+
 export default router;

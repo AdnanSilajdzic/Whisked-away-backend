@@ -10,6 +10,12 @@ const UserSchema = new Schema({
   creationDate: Date,
   bio: String,
   likedFoods: [String],
+  recipes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Recipe",
+    },
+  ],
   following: [
     {
       type: mongoose.Schema.Types.ObjectId,
