@@ -13,6 +13,7 @@ import { loginUserController } from "../controllers/user/loginUserController";
 import { getFollowersController } from "../controllers/user/getFollowersController";
 import { getFollowingController } from "../controllers/user/getFollowingController";
 import { getUserRecipesController } from "../controllers/user/getUserRecipesController";
+import { updateUserController } from "../controllers/user/updateUserController";
 
 const router = express.Router();
 
@@ -29,5 +30,6 @@ router.get("/user/:userId/followers", getFollowersController);
 router.get("/user/:userId/following", getFollowingController);
 router.post("/user/login", loginUserController);
 router.get("/user/:userId/recipes", getUserRecipesController);
+router.patch("/user/:userId", updateUserController);
 
 export default router;
