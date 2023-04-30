@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import Deck from "./models/recipe";
 import cors from "cors";
 import recipeRoutes from "./routes/recipeRoutes";
+import userRoutes from "./routes/userRoutes";
 config();
 //we have created an app that can listen to requests
 const app = express();
@@ -22,4 +23,5 @@ const db = mongoose
   });
 
 app.use("/api", recipeRoutes);
+app.use("/api", userRoutes);
 app.listen(PORT);

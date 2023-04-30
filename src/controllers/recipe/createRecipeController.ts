@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Deck from "../models/recipe";
+import Deck from "../../models/recipe";
 
 export async function createRecipeController(req: Request, res: Response) {
   const newDeck = new Deck({

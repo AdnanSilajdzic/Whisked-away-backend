@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Deck from "../models/recipe";
+import Deck from "../../models/recipe";
 
 export async function addIngredients(req: Request, res: Response) {
   const deckId = req.params.deckId;

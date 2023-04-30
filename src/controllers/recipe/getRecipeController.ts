@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Recipe from "../models/recipe";
+import Recipe from "../../models/recipe";
 
 export async function getRecipeController(req: Request, res: Response) {
   const recipeId = req.params.recipeId;
