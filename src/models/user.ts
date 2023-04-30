@@ -22,6 +22,18 @@ const UserSchema = new Schema({
       ref: "User",
     },
   ],
+  savedRecipes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Recipe",
+    },
+  ],
+  likedRecipes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Recipe",
+    },
+  ],
 });
 
 const UserModel = mongoose.model("User", UserSchema);
