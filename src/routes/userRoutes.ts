@@ -14,22 +14,42 @@ import { getFollowersController } from "../controllers/user/getFollowersControll
 import { getFollowingController } from "../controllers/user/getFollowingController";
 import { getUserRecipesController } from "../controllers/user/getUserRecipesController";
 import { updateUserController } from "../controllers/user/updateUserController";
-
+import { authMiddleware } from "../middleware/authenticateToken";
 const router = express.Router();
 
 router.post("/user", createUserController);
 router.get("/user/:userId", getUserController);
 router.get("/user", getUsersController);
-router.delete("/user/:userId", deleteUserController);
-router.post("/user/:userId/likedRecipes/:recipeId", likeRecipeController);
-router.get("/user/:userId/likedRecipes/", getLikedRecipesController);
-router.post("/user/:userId/savedRecipes/:recipeId", saveRecipeController);
-router.get("/user/:userId/savedRecipes", getSavedRecipesController);
-router.post("/user/:userId/follow/:followingId", followUserController);
+router.delete("/user/:userId", authMiddleware, deleteUserController);
+router.post(
+  "/user/:userId/likedRecipes/:recipeId",
+  authMiddleware,
+  likeRecipeController
+);
+router.get(
+  "/user/:userId/likedRecipes/",
+  authMiddleware,
+  getLikedRecipesController
+);
+router.post(
+  "/user/:userId/savedRecipes/:recipeId",
+  authMiddleware,
+  saveRecipeController
+);
+router.get(
+  "/user/:userId/savedRecipes",
+  authMiddleware,
+  getSavedRecipesController
+);
+router.post(
+  "/user/:userId/follow/:followingId",
+  authMiddleware,
+  followUserController
+);
 router.get("/user/:userId/followers", getFollowersController);
 router.get("/user/:userId/following", getFollowingController);
 router.post("/user/login", loginUserController);
 router.get("/user/:userId/recipes", getUserRecipesController);
-router.patch("/user/:userId", updateUserController);
+router.patch("/user/:userId", authMiddleware, updateUserController);
 
 export default router;
