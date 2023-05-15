@@ -19,7 +19,6 @@ export async function createUserController(req: Request, res: Response) {
     password: hashedPassword,
     creationDate: Date.now(),
     bio: req.body.bio,
-    likedFoods: req.body.likedFoods,
   });
 
   const createdUser = await newUser.save();
