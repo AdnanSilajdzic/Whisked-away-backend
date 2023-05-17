@@ -15,6 +15,7 @@ import { getFollowingController } from "../controllers/user/getFollowingControll
 import { getUserRecipesController } from "../controllers/user/getUserRecipesController";
 import { updateUserController } from "../controllers/user/updateUserController";
 import { authMiddleware } from "../middleware/authenticateToken";
+import sendMailController from "../controllers/user/sendMailController";
 const router = express.Router();
 
 router.post("/user", createUserController);
@@ -51,5 +52,6 @@ router.get("/user/:userId/following", getFollowingController);
 router.post("/user/login", loginUserController);
 router.get("/user/:userId/recipes", getUserRecipesController);
 router.patch("/user/:userId", authMiddleware, updateUserController);
+router.post("/sendMail", sendMailController);
 
 export default router;

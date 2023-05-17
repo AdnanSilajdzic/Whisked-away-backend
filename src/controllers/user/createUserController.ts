@@ -7,6 +7,10 @@ export async function createUserController(req: Request, res: Response) {
   // Check if the email already exists in the database
   const existingUser = await User.findOne({ email: email });
 
+  if (!req.body.name || !req.body.email || !req.body.password) {
+    res.status(400).json({ message: "Missing required fields." });
+    return;
+  }
   if (existingUser) {
     res.status(400).json({ message: "Email already in use." });
     return;
