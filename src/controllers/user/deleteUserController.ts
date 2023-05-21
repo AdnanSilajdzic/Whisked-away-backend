@@ -5,7 +5,16 @@ import Recipe from '../../models/recipe';
 export async function deleteUserController(req: Request, res: Response) {
 	const userId = req.params.userId;
 	const user = await User.findByIdAndDelete(userId);
-
+	//delete image inside images/profile folder
+	if (user?.image) {
+		const fs = require('fs');
+		fs.unlink(`src/images/profile/${user.image}`, (err: any) => {
+			if (err) {
+				console.error(err);
+				return;
+			}
+		});
+	}
 	if (!user) {
 		res.status(404).json({ error: 'User not found' });
 		return;
