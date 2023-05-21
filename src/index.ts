@@ -18,7 +18,7 @@ const imageDir = path.join(__dirname, 'images', 'recipe');
 const profileDir = path.join(__dirname, 'images', 'profile');
 
 app.use('/images/recipe', express.static(imageDir));
-app.use('/images/recipe', express.static(profileDir));
+app.use('/images/profile', express.static(profileDir));
 
 //this is the code for connecting with the database
 const db = mongoose

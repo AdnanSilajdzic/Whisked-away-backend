@@ -15,6 +15,15 @@ const RecipeSchema = new Schema({
 	cookTime: Number,
 	instructions: String,
 	image: String,
+	reviews: [
+		{
+			reviewer: {
+				type: Schema.Types.ObjectId,
+				ref: 'User',
+			},
+			review: String,
+		},
+	],
 	likes: { type: Number, default: 0 },
 	saves: { type: Number, default: 0 },
 });
