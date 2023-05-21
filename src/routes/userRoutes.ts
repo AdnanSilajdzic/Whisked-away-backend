@@ -16,9 +16,10 @@ import { getUserRecipesController } from '../controllers/user/getUserRecipesCont
 import { updateUserController } from '../controllers/user/updateUserController';
 import { authMiddleware } from '../middleware/authenticateToken';
 import sendMailController from '../controllers/user/sendMailController';
+import uploadImage from '../middleware/uploadImage';
 const router = express.Router();
 
-router.post('/user', createUserController);
+router.post('/user', uploadImage, createUserController);
 router.get('/user/:userId', getUserController);
 router.get('/user', getUsersController);
 router.delete('/user/:userId', authMiddleware, deleteUserController);
