@@ -6,7 +6,11 @@ const Schema = mongoose.Schema;
 const RecipeSchema = new Schema({
   name: String,
   ingredients: [String],
+  tags: [String],
+  serves: Number,
+  cookTime: Number,
   instructions: String,
+  image: String,
   likes: { type: Number, default: 0 },
   saves: { type: Number, default: 0 },
 });
