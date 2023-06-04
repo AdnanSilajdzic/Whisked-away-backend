@@ -27,7 +27,7 @@ router.post('/user/:userId/likedRecipes/:recipeId', authMiddleware, likeRecipeCo
 router.get('/user/:userId/likedRecipes/', authMiddleware, getLikedRecipesController);
 router.post('/user/:userId/savedRecipes/:recipeId', authMiddleware, saveRecipeController);
 router.get('/user/:userId/savedRecipes', authMiddleware, getSavedRecipesController);
-router.post('/user/:userId/follow/:followingId', authMiddleware, followUserController);
+router.post('/user/:userId/follow/:followingId', followUserController);
 router.get('/user/:userId/followers', getFollowersController);
 router.get('/user/:userId/following', getFollowingController);
 router.post('/user/login', loginUserController);
