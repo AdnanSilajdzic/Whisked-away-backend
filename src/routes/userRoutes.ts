@@ -16,6 +16,7 @@ import { getUserRecipesController } from '../controllers/user/getUserRecipesCont
 import { updateUserController } from '../controllers/user/updateUserController';
 import { authMiddleware } from '../middleware/authenticateToken';
 import sendMailController from '../controllers/user/sendMailController';
+import sendPasswordResetEmail from '../controllers/user/passwordResetEmailController';
 import uploadImage from '../middleware/uploadImage';
 const router = express.Router();
 
@@ -34,5 +35,6 @@ router.post('/user/login', loginUserController);
 router.get('/user/:userId/recipes', getUserRecipesController);
 router.patch('/user/:userId', authMiddleware, updateUserController);
 router.post('/sendMail', sendMailController);
+router.post('/send-password-reset-email', sendPasswordResetEmail);
 
 export default router;
