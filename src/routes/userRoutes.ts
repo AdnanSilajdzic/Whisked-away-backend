@@ -34,7 +34,8 @@ router.get('/user/:userId/following', getFollowingController);
 router.post('/user/login', loginUserController);
 router.get('/user/:userId/recipes', getUserRecipesController);
 router.patch('/user/:userId', authMiddleware, updateUserController);
-router.post('/sendMail', sendMailController);
 router.post('/send-password-reset-email', sendPasswordResetEmail);
+router.post('/sendMail', sendMailController);
+
 
 export default router;
