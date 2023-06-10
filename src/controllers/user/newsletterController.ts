@@ -21,13 +21,13 @@ export default async function newsletterController(req: Request, res: any) {
     const mailOptions = {
       from: email,
       to: "ismaraganovic3@gmail.com",
-      subject: `Subscription message`,
-      text: 'You are now subscribed',
+      subject: `Subscribed`,
+      text: `${email} is now subscribed`,
     };
     const userMailResponse = {
         from: "ismaraganovic3@gmail.com",
         to: email,
-        subject: `Thanks message`,
+        subject: `Thanks`,
         text: 'Thank you for your subscription',
       };
     transporter.sendMail(mailOptions, () => {
