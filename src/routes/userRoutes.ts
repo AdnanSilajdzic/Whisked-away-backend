@@ -14,6 +14,7 @@ import { getFollowersController } from '../controllers/user/getFollowersControll
 import { getFollowingController } from '../controllers/user/getFollowingController';
 import { getUserRecipesController } from '../controllers/user/getUserRecipesController';
 import { updateUserController } from '../controllers/user/updateUserController';
+import newsletterController  from '../controllers/user/newsletterController';
 import { authMiddleware } from '../middleware/authenticateToken';
 import sendMailController from '../controllers/user/sendMailController';
 import uploadImage from '../middleware/uploadImage';
@@ -34,5 +35,6 @@ router.post('/user/login', loginUserController);
 router.get('/user/:userId/recipes', getUserRecipesController);
 router.patch('/user/:userId', authMiddleware, updateUserController);
 router.post('/sendMail', sendMailController);
+router.post('/subscribe', newsletterController);
 
 export default router;
