@@ -14,6 +14,7 @@ import { getFollowersController } from '../controllers/user/getFollowersControll
 import { getFollowingController } from '../controllers/user/getFollowingController';
 import { getUserRecipesController } from '../controllers/user/getUserRecipesController';
 import { updateUserController } from '../controllers/user/updateUserController';
+import newsletterController  from '../controllers/user/newsletterController';
 import { authMiddleware } from '../middleware/authenticateToken';
 import sendMailController from '../controllers/user/sendMailController';
 import sendPasswordResetEmail from '../controllers/user/passwordResetEmailController';
@@ -29,7 +30,7 @@ router.post('/user/:userId/likedRecipes/:recipeId', authMiddleware, likeRecipeCo
 router.get('/user/:userId/likedRecipes/', authMiddleware, getLikedRecipesController);
 router.post('/user/:userId/savedRecipes/:recipeId', authMiddleware, saveRecipeController);
 router.get('/user/:userId/savedRecipes', authMiddleware, getSavedRecipesController);
-router.post('/user/:userId/follow/:followingId', authMiddleware, followUserController);
+router.post('/user/:userId/follow/:followingId', followUserController);
 router.get('/user/:userId/followers', getFollowersController);
 router.get('/user/:userId/following', getFollowingController);
 router.post('/user/login', loginUserController);
@@ -37,6 +38,7 @@ router.get('/user/:userId/recipes', getUserRecipesController);
 router.patch('/user/:userId', authMiddleware, updateUserController);
 router.post('/send-password-reset-email', sendPasswordResetEmail);
 router.post('/sendMail', sendMailController);
+router.post('/subscribe', newsletterController);
 router.post('/reset-password', resetPassword);
 
 
