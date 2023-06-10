@@ -1,10 +1,24 @@
 import nodemailer from 'nodemailer';
 import { Request, Response } from 'express';
+import UserModel from '../../models/user';
 
 export default async function sendPasswordResetEmail(req: Request, res: Response) {
   const { email } = req.body;
 
   try {
+    // Generate the reset token
+    const token = generateResetToken();
+
+    // Update the user document with the reset token and its expiration time
+    const foundUser = await UserModel.findOne({ email }); // Update the variable name
+    if (!foundUser) {
+      return res.status(404).send('User not found.');
+    }
+
+    foundUser.resetToken = token;
+    foundUser.resetTokenExpiration = new Date(Date.now() + 3600000); // Token expiration in 1 hour
+    await foundUser.save();
+
     // Create a nodemailer transporter
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -33,3 +47,13 @@ export default async function sendPasswordResetEmail(req: Request, res: Response
     res.status(500).send('An error occurred while sending the password reset email.');
   }
 }
+
+export function generateResetToken(): string {
+    // Generate the token using a suitable method (e.g., UUID or random string generation)
+    const token = 'your-generated-token';
+  
+    // Print the token to the console
+    console.log('Generated Token:', token);
+  
+    return token;
+  }
