@@ -25,8 +25,8 @@ export async function resetPassword(req: Request, res: Response) {
     user.resetTokenExpiration = undefined;
     await user.save();
 
-    // Send a success response
-    return res.status(200).send('Password reset successful.');
+    // Send a success response with a confirmation message
+    return res.status(200).json({ message: 'Password reset successful.' });
   } catch (error) {
     console.error('Error resetting password:', error);
     return res.status(500).send('An error occurred while resetting the password.');

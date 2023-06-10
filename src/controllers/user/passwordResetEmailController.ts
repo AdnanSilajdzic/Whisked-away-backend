@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import { Request, Response } from 'express';
+import crypto from 'crypto';
 import UserModel from '../../models/user';
 
 export default async function sendPasswordResetEmail(req: Request, res: Response) {
@@ -10,7 +11,7 @@ export default async function sendPasswordResetEmail(req: Request, res: Response
     const token = generateResetToken();
 
     // Update the user document with the reset token and its expiration time
-    const foundUser = await UserModel.findOne({ email }); // Update the variable name
+    const foundUser = await UserModel.findOne({ email });
     if (!foundUser) {
       return res.status(404).send('User not found.');
     }
@@ -28,13 +29,16 @@ export default async function sendPasswordResetEmail(req: Request, res: Response
       },
     });
 
+    // Define the password reset link
+    const resetLink = `http://localhost:5173/reset-password?token=${token}`; // Replace with your actual domain
+
     // Define the email content
     const mailOptions = {
       from: 'whiskedaway.contact@gmail.com',
       to: email,
       subject: 'Password Reset',
-      text: 'You have requested to reset your password. Click on the link to reset it.',
-      html: '<p>You have requested to reset your password. Click on the link to reset it.</p>',
+      text: `You have requested to reset your password. Click on the link to reset it: ${resetLink}`,
+      html: `<p>You have requested to reset your password. Click <a href="${resetLink}">here</a> to reset it.</p>`,
     };
 
     // Send the email
@@ -49,11 +53,11 @@ export default async function sendPasswordResetEmail(req: Request, res: Response
 }
 
 export function generateResetToken(): string {
-    // Generate the token using a suitable method (e.g., UUID or random string generation)
-    const token = 'your-generated-token';
-  
-    // Print the token to the console
-    console.log('Generated Token:', token);
-  
-    return token;
-  }
+  // Generate a random 32-character token
+  const token = crypto.randomBytes(32).toString('hex');
+
+  // Print the token to the console
+  console.log('Generated Token:', token);
+
+  return token;
+}
