@@ -17,6 +17,8 @@ import { updateUserController } from '../controllers/user/updateUserController';
 import newsletterController  from '../controllers/user/newsletterController';
 import { authMiddleware } from '../middleware/authenticateToken';
 import sendMailController from '../controllers/user/sendMailController';
+import sendPasswordResetEmail from '../controllers/user/passwordResetEmailController';
+import {resetPassword} from '../controllers/user/passwordResetController';
 import uploadImage from '../middleware/uploadImage';
 const router = express.Router();
 
@@ -34,7 +36,10 @@ router.get('/user/:userId/following', getFollowingController);
 router.post('/user/login', loginUserController);
 router.get('/user/:userId/recipes', getUserRecipesController);
 router.patch('/user/:userId', authMiddleware, updateUserController);
+router.post('/send-password-reset-email', sendPasswordResetEmail);
 router.post('/sendMail', sendMailController);
 router.post('/subscribe', newsletterController);
+router.post('/reset-password', resetPassword);
+
 
 export default router;
